@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 
 export type PantryItem = { name: string; amount: number };
-const pantryFile = path.join(__dirname, 'pantry.json');
+const pantryFile = path.join(path.dirname(__dirname), 'pantry.json');
 
 export function loadPantry(): PantryItem[] {
     if (fs.existsSync(pantryFile)) {
