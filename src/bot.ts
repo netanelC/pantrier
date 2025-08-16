@@ -1,10 +1,12 @@
+import 'dotenv/config';
 import { Client, LocalAuth, Message } from "whatsapp-web.js";
 import qrcode from "qrcode-terminal";
 import { loadPantry, savePantry, PantryItem } from "./pantry";
 
-let pantry: PantryItem[] = loadPantry();
+// Use environment variable or fallback to default
+const TARGET_GROUP_ID = process.env.GROUP_ID || "120363403361236033@g.us";
 
-const TARGET_GROUP_ID = "120363403361236033@g.us";
+let pantry: PantryItem[] = loadPantry();
 
 const client = new Client({
     authStrategy: new LocalAuth({ dataPath: 'session' }),

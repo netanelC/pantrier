@@ -17,7 +17,7 @@
   "scripts": {
     "build": "tsc && npm run assets:copy",
     "start": "npm run build && cd dist && node ./index.js",
-    "dev": "npm run build && cd dist && nodemon ./index.js",
+    "dev": "npm run build && copyfiles .env dist && cd dist && nodemon ./index.js",
     "clean": "rimraf dist",
     "assets:copy": "copyfiles ./package.json dist"
   },
@@ -25,6 +25,7 @@
   "dependencies": {
     "@types/node": "^24.3.0",
     "copyfiles": "^2.4.1",
+    "dotenv": "^17.2.1",
     "fastify": "^5.5.0",
     "qrcode-terminal": "^0.12.0",
     "ts-node": "^10.9.2",
