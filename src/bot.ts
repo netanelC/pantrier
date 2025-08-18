@@ -26,13 +26,23 @@ client.on("ready", () => {
   console.log(`👂 Listening only to group: ${TARGET_GROUP_ID}`);
 });
 
-client.on("message", (message: Message) => {
+// client.on("message", (message: Message) => {
+//   console.log(`Hila: ${message.body} by ${message.fromMe}`);
+//   handleMessage(message);
+// });
+
+client.on("message_create", (message: Message) => {
   // Check if the message is from the target group. If not, do nothing.
-  if (message.from !== TARGET_GROUP_ID) {
+  if ((message.from !== TARGET_GROUP_ID && message.to !== TARGET_GROUP_ID) || message.ack !== 1) {
     return;
   }
 
+  handleMessage(message);
+});
+
+function handleMessage(message: Message): void {
   const incomingMsg = message.body.trim();
+
   console.log(`Received message from ${message.from}: "${incomingMsg}"`);
 
   let replyMsg = "";
@@ -108,7 +118,7 @@ client.on("message", (message: Message) => {
   if (replyMsg) {
     client.sendMessage(TARGET_GROUP_ID, replyMsg);
   }
-});
+}
 
 export function startBot() {
   client.initialize();
