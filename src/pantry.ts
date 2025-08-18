@@ -16,5 +16,6 @@ export function loadPantry(): PantryItem[] {
 }
 
 export function savePantry(pantry: PantryItem[]) {
-    fs.writeFileSync(pantryFile, JSON.stringify(pantry, null, 2), 'utf-8');
+    const sortedPantry = pantry.slice().sort((a, b) => a.name.localeCompare(b.name));
+    fs.writeFileSync(pantryFile, JSON.stringify(sortedPantry, null, 2), 'utf-8');
 }
