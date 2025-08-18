@@ -26,11 +26,6 @@ client.on("ready", () => {
   console.log(`👂 Listening only to group: ${TARGET_GROUP_ID}`);
 });
 
-// client.on("message", (message: Message) => {
-//   console.log(`Hila: ${message.body} by ${message.fromMe}`);
-//   handleMessage(message);
-// });
-
 client.on("message_create", (message: Message) => {
   // Check if the message is from the target group. If not, do nothing.
   if ((message.from !== TARGET_GROUP_ID && message.to !== TARGET_GROUP_ID) || message.ack !== 1) {
